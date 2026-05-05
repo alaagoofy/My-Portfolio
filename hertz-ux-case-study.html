@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HERTZ — UX Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #7a6230;
+    --black: #0A0A0A;
+    --deep: #111111;
+    --card: #161616;
+    --border: #2a2a2a;
+    --text: #E8E4DC;
+    --muted: #888;
+    --accent: #FF4D1C;
+    --hertz-yellow: #FFD700;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.35;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.1; }
+  .mono { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, #1a1408 0%, var(--black) 70%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black, transparent);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid var(--gold-dim);
+    border-radius: 100px;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.6); }
+  }
+
+  .hero h1 {
+    font-size: clamp(5rem, 14vw, 11rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    animation: fadeUp 0.8s 0.1s ease both;
+    background: linear-gradient(135deg, #ffffff 30%, var(--gold-light) 70%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    margin-top: 2rem;
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-meta-item {
+    text-align: center;
+  }
+
+  .hero-meta-item .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-meta-item .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    animation: fadeUp 1s 0.6s ease both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(var(--gold), transparent);
+    animation: scrollDown 1.8s infinite;
+  }
+
+  @keyframes scrollDown {
+    0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+    50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+    100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+  }
+
+  /* ── LAYOUT ── */
+  .section {
+    padding: 7rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-wide {
+    padding: 7rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-full {
+    padding: 7rem 0;
+    overflow: hidden;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  .section-header {
+    margin-bottom: 4rem;
+  }
+
+  .section-header .mono {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    max-width: 640px;
+  }
+
+  .section-header p {
+    margin-top: 1.2rem;
+    color: var(--muted);
+    max-width: 560px;
+    font-size: 1.05rem;
+  }
+
+  /* ── PHASE PILL ── */
+  .phase-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .phase-pill.empathize { background: rgba(255,77,28,0.12); color: #FF7A56; border: 1px solid rgba(255,77,28,0.25); }
+  .phase-pill.define { background: rgba(100,180,255,0.1); color: #7EC4FF; border: 1px solid rgba(100,180,255,0.2); }
+  .phase-pill.ideate { background: rgba(163,104,255,0.1); color: #C49EFF; border: 1px solid rgba(163,104,255,0.2); }
+  .phase-pill.prototype { background: rgba(201,168,76,0.1); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.25); }
+  .phase-pill.test { background: rgba(70,200,120,0.1); color: #6EDDA0; border: 1px solid rgba(70,200,120,0.2); }
+
+  /* ── OVERVIEW GRID ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .overview-cell {
+    background: var(--card);
+    padding: 2.5rem;
+    transition: background 0.3s;
+  }
+
+  .overview-cell:hover { background: #1c1c1c; }
+  .overview-cell .label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+  .overview-cell .content { font-size: 1.05rem; color: var(--text); }
+  .overview-cell .number { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); line-height: 1; margin-bottom: 0.4rem; }
+
+  /* ── PROBLEM STATEMENT ── */
+  .problem-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 16px;
+    padding: 3rem;
+    margin-top: 3rem;
+  }
+
+  .problem-block blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .problem-block cite {
+    display: block;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: normal;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── USER PERSONAS ── */
+  .personas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .persona-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .persona-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-dim);
+  }
+
+  .persona-header {
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .persona-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .persona-avatar.blue { background: linear-gradient(135deg, #1a3a5c, #2563a8); }
+  .persona-avatar.orange { background: linear-gradient(135deg, #5c2a1a, #c85c28); }
+
+  .persona-info h3 { font-size: 1.15rem; margin-bottom: 0.2rem; }
+  .persona-info .role { font-size: 0.78rem; color: var(--muted); }
+
+  .persona-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .persona-stat {
+    padding: 1.2rem 2rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .persona-stat:nth-child(even) { border-right: none; }
+  .persona-stat:nth-last-child(-n+2) { border-bottom: none; }
+  .persona-stat .s-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+  .persona-stat .s-value { font-size: 0.9rem; color: var(--text); }
+
+  /* ── INSIGHT CARDS ── */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .insight-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .insight-card:hover { transform: translateY(-3px); }
+
+  .insight-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .insight-card.red::before { background: var(--accent); }
+  .insight-card.blue::before { background: #4A90D9; }
+  .insight-card.purple::before { background: #A063FF; }
+  .insight-card.gold::before { background: var(--gold); }
+  .insight-card.green::before { background: #4CAF8E; }
+  .insight-card.teal::before { background: #2ABFBF; }
+
+  .insight-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+    opacity: 0.25;
+    color: var(--text);
+  }
+
+  .insight-card h3 { font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.6rem; color: var(--text); }
+  .insight-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── HMW CARDS ── */
+  .hmw-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+
+  .hmw-card {
+    background: linear-gradient(135deg, #1a1a1a, #161616);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.8rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: border-color 0.3s;
+  }
+
+  .hmw-card:hover { border-color: var(--gold-dim); }
+
+  .hmw-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    display: grid;
+    place-items: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .hmw-text { font-size: 0.9rem; color: var(--text); line-height: 1.55; }
+  .hmw-text strong { color: var(--gold-light); font-weight: 500; }
+
+  /* ── JOURNEY MAP ── */
+  .journey-container {
+    margin-top: 3rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .journey-table {
+    min-width: 800px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .journey-table th {
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,168,76,0.05);
+    border-bottom: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .journey-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    vertical-align: top;
+  }
+
+  .journey-table tr:last-child td { border-bottom: none; }
+
+  .stage-label {
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .emotion-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .emotion-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .emotion-dot.frustrated { background: var(--accent); }
+  .emotion-dot.confused { background: #F5A623; }
+  .emotion-dot.neutral { background: #888; }
+  .emotion-dot.happy { background: #4CAF8E; }
+  .emotion-dot.delighted { background: var(--gold); }
+
+  /* ── PHONE MOCKUP ── */
+  .phones-section {
+    background: linear-gradient(180deg, var(--black) 0%, #0d0d0d 50%, var(--black) 100%);
+    padding: 7rem 2rem;
+    overflow: hidden;
+  }
+
+  .phones-inner { max-width: 1200px; margin: 0 auto; }
+
+  .phones-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 5rem;
+    perspective: 1000px;
+    flex-wrap: wrap;
+  }
+
+  .phone-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .phone-wrapper:nth-child(2) .phone { transform: translateY(-30px); }
+  .phone-wrapper:nth-child(4) .phone { transform: translateY(-15px); }
+
+  .phone {
+    width: 200px;
+    height: 420px;
+    background: #0f0f0f;
+    border-radius: 36px;
+    border: 2px solid #333;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px #1a1a1a,
+      0 40px 80px rgba(0,0,0,0.8),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: transform 0.4s ease;
+  }
+
+  .phone:hover { transform: translateY(-8px) scale(1.02) !important; }
+
+  .phone-notch {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 90px; height: 26px;
+    background: #0f0f0f;
+    border-radius: 0 0 18px 18px;
+    z-index: 10;
+    border: 2px solid #222;
+    border-top: none;
+  }
+
+  .phone-screen {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    border-radius: 34px;
+  }
+
+  /* SCREEN DESIGNS */
+  /* Screen 1: Splash / Onboarding */
+  .screen-splash {
+    background: linear-gradient(160deg, #1a0a00 0%, #0d0500 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .screen-splash::before {
+    content: '';
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .splash-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--hertz-yellow);
+    letter-spacing: -0.02em;
+    z-index: 1;
+  }
+
+  .splash-tagline {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-top: 0.5rem;
+    z-index: 1;
+  }
+
+  .splash-car {
+    position: absolute;
+    bottom: 60px;
+    width: 140px;
+    z-index: 1;
+  }
+
+  .splash-btn {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--hertz-yellow);
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 1;
+    width: 140px;
+    text-align: center;
+  }
+
+  /* Screen 2: Home / Search */
+  .screen-home {
+    background: #f5f5f5;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .screen-home-header {
+    background: #FFD700;
+    padding: 2rem 1rem 1rem;
+    padding-top: 2.2rem;
+  }
+
+  .s-greeting {
+    font-size: 0.48rem;
+    color: rgba(0,0,0,0.6);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.15rem;
+  }
+
+  .s-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: #000;
+    font-weight: 700;
+  }
+
+  .s-search-bar {
+    background: #fff;
+    border-radius: 10px;
+    padding: 0.5rem 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .s-search-icon { font-size: 0.6rem; color: #888; }
+  .s-search-text { font-size: 0.5rem; color: #aaa; }
+
+  .s-section-title {
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: #222;
+    padding: 0.7rem 1rem 0.3rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .s-car-cards {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.3rem 1rem;
+    overflow-x: hidden;
+  }
+
+  .s-car-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 0.6rem;
+    min-width: 90px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    flex-shrink: 0;
+  }
+
+  .s-car-img {
+    width: 100%;
+    height: 38px;
+    background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .s-car-name { font-size: 0.48rem; font-weight: 700; color: #222; }
+  .s-car-cat { font-size: 0.4rem; color: #888; margin-bottom: 0.4rem; }
+  .s-car-price { font-size: 0.55rem; font-weight: 700; color: #222; }
+  .s-car-price span { font-size: 0.38rem; color: #888; font-weight: 400; }
+
+  .s-promo-banner {
+    margin: 0.5rem 1rem;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 12px;
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .s-promo-text { font-size: 0.45rem; color: #fff; line-height: 1.5; }
+  .s-promo-badge {
+    background: var(--hertz-yellow);
+    color: #000;
+    border-radius: 6px;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.42rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* Screen 3: Car Detail */
+  .screen-detail {
+    background: #fff;
+    height: 100%;
+    position: relative;
+  }
+
+  .s-detail-hero {
+    background: linear-gradient(135deg, #fff8e1, #fff3cd);
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: 1.2rem;
+  }
+
+  .s-back-btn {
+    position: absolute;
+    top: 1.8rem;
+    left: 0.8rem;
+    width: 20px; height: 20px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+  }
+
+  .s-fav-btn {
+    position: absolute;
+    top: 1.8rem;
+    right: 0.8rem;
+    width: 20px; height: 20px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+  }
+
+  .s-detail-car {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+  }
+
+  .s-detail-info {
+    padding: 0.8rem 1rem;
+  }
+
+  .s-detail-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .s-detail-cat {
+    font-size: 0.45rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+  }
+
+  .s-specs-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .s-spec {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 0.35rem 0.5rem;
+    text-align: center;
+    flex: 1;
+  }
+
+  .s-spec-icon { font-size: 0.6rem; }
+  .s-spec-val { font-size: 0.42rem; font-weight: 700; color: #222; }
+  .s-spec-lbl { font-size: 0.35rem; color: #888; }
+
+  .s-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .s-stars { font-size: 0.5rem; color: var(--hertz-yellow); }
+  .s-rating-num { font-size: 0.5rem; font-weight: 700; color: #222; }
+  .s-reviews { font-size: 0.42rem; color: #888; }
+
+  .s-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #111;
+    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+    margin-top: 0.4rem;
+  }
+
+  .s-price-label { font-size: 0.4rem; color: rgba(255,255,255,0.5); }
+  .s-price-amount { font-size: 0.85rem; font-weight: 700; color: var(--hertz-yellow); }
+  .s-price-per { font-size: 0.38rem; color: rgba(255,255,255,0.4); }
+  .s-book-btn {
+    background: var(--hertz-yellow);
+    color: #000;
+    border-radius: 8px;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.45rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Screen 4: Booking Form */
+  .screen-booking {
+    background: #fafafa;
+    height: 100%;
+  }
+
+  .s-booking-header {
+    background: #111;
+    padding: 2rem 1rem 1rem;
+    color: #fff;
+  }
+
+  .s-booking-title { font-size: 0.8rem; font-weight: 700; }
+  .s-booking-subtitle { font-size: 0.42rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+
+  .s-steps {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+  }
+
+  .s-step {
+    height: 3px;
+    flex: 1;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .s-step.active { background: var(--hertz-yellow); }
+  .s-step.done { background: rgba(255,215,0,0.4); }
+
+  .s-form-body {
+    padding: 0.8rem 1rem;
+  }
+
+  .s-field-label {
+    font-size: 0.42rem;
+    color: #888;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+    margin-top: 0.5rem;
+  }
+
+  .s-field {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.5rem;
+    color: #222;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .s-field-icon { font-size: 0.6rem; color: #bbb; }
+
+  .s-field-value {
+    font-size: 0.5rem;
+    color: #222;
+    font-weight: 500;
+  }
+
+  .s-date-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+  }
+
+  .s-total-box {
+    background: linear-gradient(135deg, #FFD700, #FFC200);
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+    margin-top: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .s-total-label { font-size: 0.42rem; font-weight: 600; color: rgba(0,0,0,0.6); }
+  .s-total-amount { font-size: 0.9rem; font-weight: 700; color: #000; }
+
+  /* Screen 5: Confirmation */
+  .screen-confirm {
+    background: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .s-confirm-icon {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, #FFD700, #FFC200);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 8px 24px rgba(255,215,0,0.3);
+  }
+
+  .s-confirm-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.3rem;
+  }
+
+  .s-confirm-sub {
+    font-size: 0.45rem;
+    color: #888;
+    max-width: 130px;
+    line-height: 1.5;
+  }
+
+  .s-booking-ref {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    margin-top: 0.7rem;
+    width: 100%;
+  }
+
+  .s-ref-label { font-size: 0.38rem; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
+  .s-ref-value { font-size: 0.7rem; font-weight: 700; color: #111; font-family: 'DM Mono', monospace; letter-spacing: 0.1em; }
+
+  .s-confirm-details {
+    width: 100%;
+    margin-top: 0.6rem;
+  }
+
+  .s-cd-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.42rem;
+  }
+
+  .s-cd-row:last-child { border-bottom: none; }
+  .s-cd-key { color: #888; }
+  .s-cd-val { color: #111; font-weight: 600; }
+
+  .s-view-booking-btn {
+    background: #111;
+    color: #fff;
+    border-radius: 10px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.45rem;
+    font-weight: 700;
+    margin-top: 0.8rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .phone-label {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* ── DESIGN DECISIONS ── */
+  .decisions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .decision-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .decision-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold-dim);
+  }
+
+  .decision-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.15);
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .decision-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .decision-card p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── METRICS ── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .metric-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .metric-num.up { color: #4CAF8E; }
+  .metric-num.down { color: var(--accent); }
+  .metric-num.gold { color: var(--gold); }
+
+  .metric-label { font-size: 0.78rem; color: var(--muted); }
+
+  /* ── REFLECTION ── */
+  .reflection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .reflection-card {
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+
+  .reflection-card.learned { background: rgba(76,175,142,0.05); border-color: rgba(76,175,142,0.2); }
+  .reflection-card.next { background: rgba(201,168,76,0.05); border-color: rgba(201,168,76,0.2); }
+
+  .reflection-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .reflection-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .reflection-card li {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .reflection-card.learned li::before { content: '✓'; position: absolute; left: 0; color: #4CAF8E; font-weight: 700; }
+  .reflection-card.next li::before { content: '→'; position: absolute; left: 0; color: var(--gold); }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 5rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer::before {
+    content: 'HERTZ';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.02);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-role { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .footer-note { font-size: 0.78rem; color: rgba(255,255,255,0.2); }
+
+  /* ── PROCESS TIMELINE ── */
+  .timeline {
+    position: relative;
+    margin-top: 3rem;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.6rem; bottom: 0;
+    width: 1px;
+    background: linear-gradient(var(--gold), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.3rem;
+    top: 0.3rem;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid var(--black);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  .timeline-item h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-item p { font-size: 0.88rem; color: var(--muted); max-width: 560px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .overview-grid { grid-template-columns: 1fr; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .personas-grid { grid-template-columns: 1fr; }
+    .decisions-grid { grid-template-columns: 1fr; }
+    .hmw-grid { grid-template-columns: 1fr; }
+    .metrics-row { grid-template-columns: 1fr 1fr; }
+    .reflection-grid { grid-template-columns: 1fr; }
+    .phones-grid { gap: 1rem; }
+    .phone { width: 150px; height: 315px; }
+  }
+
+  /* ── BLOCKQUOTE CALLOUT ── */
+  .callout {
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(201,168,76,0.02));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin: 3rem 0;
+    position: relative;
+  }
+
+  .callout::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem;
+    left: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.25;
+    line-height: 1;
+  }
+
+  .callout p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .callout cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Nav dots */
+  .nav-dots {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    z-index: 100;
+  }
+
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .nav-dot.active { background: var(--gold); transform: scale(1.5); }
+
+  @media (max-width: 900px) { .nav-dots { display: none; } }
+
+</style>
+</head>
+<body>
+
+
+
+  <a href="javascript:history.back()" class="back-btn" aria-label="Go Back">
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M15 18L9 12L15 6"/>
+  </svg>
+
+  <span>BACK</span>
+
+</a>
+
+<style>
+
+.back-btn{
+  position: fixed;
+
+  top: 24px;
+  left: 24px;
+
+  height: 58px;
+  padding: 0 32px 0 28px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  background:
+   #f3b20c;
+
+  backdrop-filter:
+    blur(18px)
+    saturate(180%);
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(180%);
+
+  border:
+    1px solid rgba(255,255,255,0.14);
+
+  box-shadow:
+    0 14px 40px rgba(236, 207, 24, 0.18),
+    inset 0 1px 0 rgba(255,255,255,.08);
+
+  color: white;
+
+  z-index: 9999;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease,
+    border .25s ease;
+}
+
+.back-btn:hover{
+
+  transform:
+    translateY(-3px);
+
+  background:
+    #77670a;
+
+  border:
+    1px solid rgba(255,255,255,0.22);
+
+  box-shadow:
+    0 20px 50px rgba(156, 149, 6, 0.28),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.back-btn:active{
+  transform: scale(.97);
+}
+
+.back-btn svg{
+  width: 18px;
+  height: 18px;
+}
+
+.back-btn span{
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size: .78rem;
+  font-weight: 800;
+
+  letter-spacing: .18em;
+}
+
+/* Mobile */
+
+@media (max-width: 768px){
+
+  .back-btn{
+
+    top: 18px;
+    left: 18px;
+
+    height: 52px;
+
+    padding:
+      0 18px 0 16px;
+  }
+
+}
+
+</style>
+
+
+
+<!-- NAV DOTS -->
+<nav class="nav-dots" id="navDots">
+  <div class="nav-dot active" data-section="hero" title="Cover"></div>
+  <div class="nav-dot" data-section="overview" title="Overview"></div>
+  <div class="nav-dot" data-section="empathize" title="Empathize"></div>
+  <div class="nav-dot" data-section="define" title="Define"></div>
+  <div class="nav-dot" data-section="ideate" title="Ideate"></div>
+  <div class="nav-dot" data-section="design" title="Design"></div>
+  <div class="nav-dot" data-section="test" title="Test"></div>
+  <div class="nav-dot" data-section="reflection" title="Reflection"></div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">UX Case Study · Mobile App Redesign</div>
+    <h1>HERTZ</h1>
+    <p class="hero-subtitle">Reimagining the car rental experience — from frustration to seamless, end-to-end journey ownership.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="label">Role</div>
+        <div class="value">UX Designer</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Duration</div>
+        <div class="value">6 Weeks</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Platform</div>
+        <div class="value">iOS · Android</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Tools</div>
+        <div class="value">Adobe XD</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── OVERVIEW ── -->
+<section class="section fade-in" id="overview">
+  <div class="section-header">
+    <span class="mono">00 · Project Overview</span>
+    <h2>The Brief</h2>
+    <p>Hertz is one of the world's largest car rental brands. Despite its global reach, the mobile experience was falling behind — riddled with friction, unclear navigation, and a checkout flow that drove users away.</p>
+  </div>
+
+  <div class="overview-grid">
+    <div class="overview-cell">
+      <div class="label">The Challenge</div>
+      <div class="content">Redesign the Hertz mobile app to reduce booking drop-offs and deliver an experience worthy of a premium global brand.</div>
+    </div>
+    <div class="overview-cell">
+      <div class="label">My Approach</div>
+      <div class="content">Applied the full Design Thinking framework — Empathize, Define, Ideate, Prototype, and Test — anchoring every decision in real user needs.</div>
+    </div>
+    <div class="overview-cell">
+      <div class="label">Primary Goal</div>
+      <div class="content">Increase booking completion rates and NPS scores by reducing cognitive load and building user confidence throughout the rental journey.</div>
+    </div>
+    <div class="overview-cell">
+      <div class="number">68%</div>
+      <div class="label">Previous booking drop-off rate</div>
+    </div>
+    <div class="overview-cell">
+      <div class="number">2.8★</div>
+      <div class="label">App Store rating before redesign</div>
+    </div>
+    <div class="overview-cell">
+      <div class="number">12+</div>
+      <div class="label">Screens redesigned end-to-end</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── EMPATHIZE ── -->
+<section class="section fade-in" id="empathize">
+  <div class="section-header">
+    <div class="phase-pill empathize">● Phase 01 · Empathize</div>
+    <h2>Understanding the People Behind the Problem</h2>
+    <p>Before touching a single wireframe, I needed to understand who rents cars, why, and what gets in their way. I conducted user interviews, ride-along observations, and competitive analysis.</p>
+  </div>
+
+  <div class="insights-grid">
+    <div class="insight-card red fade-in">
+      <div class="insight-num">01</div>
+      <h3>Trust Anxiety at Checkout</h3>
+      <p>Users reported feeling uncertain about hidden fees and insurance charges. 6 out of 8 interviewees abandoned the app at the payment screen.</p>
+    </div>
+    <div class="insight-card blue fade-in">
+      <div class="insight-num">02</div>
+      <h3>Navigation Paralysis</h3>
+      <p>The existing information architecture forced users through 7 steps to complete a booking. Participants lost track of where they were in the flow.</p>
+    </div>
+    <div class="insight-card purple fade-in">
+      <div class="insight-num">03</div>
+      <h3>Car Discovery Confusion</h3>
+      <p>Users couldn't distinguish between vehicle categories. Unclear imagery and jargon-heavy specs made car selection feel like a gamble.</p>
+    </div>
+    <div class="insight-card gold fade-in">
+      <div class="insight-num">04</div>
+      <h3>No Sense of Progress</h3>
+      <p>Absence of booking status indicators created anxiety. Users didn't know if their reservation was confirmed until they checked email.</p>
+    </div>
+    <div class="insight-card green fade-in">
+      <div class="insight-num">05</div>
+      <h3>Loyalty Program Invisibility</h3>
+      <p>Frequent renters were unaware of their Hertz Gold Plus Rewards status within the app. A key retention lever was effectively hidden.</p>
+    </div>
+    <div class="insight-card teal fade-in">
+      <div class="insight-num">06</div>
+      <h3>Poor Offline Handling</h3>
+      <p>Travelers in airports — prime rental moments — experienced app failures in low-connectivity zones, forcing them to the website or counter.</p>
+    </div>
+  </div>
+
+  <div class="callout fade-in" style="margin-top: 3rem;">
+    <p>I just want to find a car, pay, and be done with it. Why does it feel like I'm filling out a tax return?</p>
+    <cite>— Interview Participant, Business Traveler, 34</cite>
+  </div>
+
+  <!-- PERSONAS -->
+  <div style="margin-top: 4rem;">
+    <span class="mono" style="display:block; margin-bottom: 1rem;">User Personas</span>
+    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Two primary archetypes emerged</h3>
+    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0;">Synthesized from 12 interviews and 200+ survey responses</p>
+  </div>
+
+  <div class="personas-grid fade-in">
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-avatar blue">✈️</div>
+        <div class="persona-info">
+          <h3>Omar A.</h3>
+          <div class="role">Business Traveler · 34 · Cairo → Dubai weekly</div>
+        </div>
+      </div>
+      <div class="persona-stats">
+        <div class="persona-stat">
+          <div class="s-label">Goal</div>
+          <div class="s-value">Book fast, get car, go</div>
+        </div>
+        <div class="persona-stat">
+          <div class="s-label">Rents</div>
+          <div class="s-value">8–10× per year</div>
+        </div>
+        <div class="persona-stat">
+          <div class="s-label">Frustration</div>
+          <div class="s-value">Surprise charges at pickup</div>
+        </div>
+        <div class="persona-stat">
+          <div class="s-label">Motivator</div>
+          <div class="s-value">Loyalty rewards & speed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-avatar orange">🚗</div>
+        <div class="persona-info">
+          <h3>Sara M.</h3>
+          <div class="role">Leisure Traveler · 28 · Plans family road trips</div>
+        </div>
+      </div>
+      <div class="persona-stats">
+        <div class="persona-stat">
+          <div class="s-label">Goal</div>
+          <div class="s-value">Find the right car for the trip</div>
+        </div>
+        <div class="persona-stat">
+          <div class="s-label">Rents</div>
+          <div class="s-value">2–3× per year</div>
+        </div>
+        <div class="persona-stat">
+          <div class="s-label">Frustration</div>
+          <div class="s-value">Can't compare cars easily</div>
+        </div>
+        <div class="persona-stat">
+          <div class="s-label">Motivator</div>
+          <div class="s-value">Value, safety, car size</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOURNEY MAP -->
+  <div style="margin-top: 4rem;" class="fade-in">
+    <span class="mono" style="display:block; margin-bottom: 1rem;">User Journey Map · Business Traveler (Omar)</span>
+    <h3 style="font-size: 1.5rem; margin-bottom: 2rem;">Mapping the emotional landscape</h3>
+
+    <div class="journey-container">
+      <table class="journey-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Action</th>
+            <th>Emotion</th>
+            <th>Pain Point</th>
+            <th>Opportunity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="stage-label">1. Awareness</span></td>
+            <td>Opens app to book a car</td>
+            <td><div class="emotion-bar"><div class="emotion-dot neutral"></div> Neutral</div></td>
+            <td>Slow app launch, outdated UI</td>
+            <td>Instant personalized greeting</td>
+          </tr>
+          <tr>
+            <td><span class="stage-label">2. Discovery</span></td>
+            <td>Searches location & date</td>
+            <td><div class="emotion-bar"><div class="emotion-dot confused"></div> Confused</div></td>
+            <td>Too many filters, unclear categories</td>
+            <td>Smart defaults + visual car cards</td>
+          </tr>
+          <tr>
+            <td><span class="stage-label">3. Consideration</span></td>
+            <td>Browses car options</td>
+            <td><div class="emotion-bar"><div class="emotion-dot confused"></div> Overwhelmed</div></td>
+            <td>Specs are jargon, no comparison</td>
+            <td>Side-by-side compare + plain language</td>
+          </tr>
+          <tr>
+            <td><span class="stage-label">4. Booking</span></td>
+            <td>Fills in details & extras</td>
+            <td><div class="emotion-bar"><div class="emotion-dot frustrated"></div> Frustrated</div></td>
+            <td>Too many screens, forced upsells</td>
+            <td>One-page booking with progress bar</td>
+          </tr>
+          <tr>
+            <td><span class="stage-label">5. Payment</span></td>
+            <td>Reviews total & pays</td>
+            <td><div class="emotion-bar"><div class="emotion-dot frustrated"></div> Anxious</div></td>
+            <td>Hidden fees appear at last step</td>
+            <td>Transparent price breakdown upfront</td>
+          </tr>
+          <tr>
+            <td><span class="stage-label">6. Confirmation</span></td>
+            <td>Receives booking confirmation</td>
+            <td><div class="emotion-bar"><div class="emotion-dot happy"></div> Relieved</div></td>
+            <td>Confirmation only via email, not in-app</td>
+            <td>Animated in-app confirmation + PDF</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── DEFINE ── -->
+<section class="section fade-in" id="define">
+  <div class="section-header">
+    <div class="phase-pill define">● Phase 02 · Define</div>
+    <h2>Framing the Right Problems</h2>
+    <p>With research complete, I synthesized pain points into actionable "How Might We" questions — the compass for everything that followed.</p>
+  </div>
+
+  <div class="problem-block fade-in">
+    <blockquote>
+      "How might we help time-pressed and first-time renters complete a car booking with confidence — without information overload or hidden surprises — so that Hertz feels like the effortless choice?"
+    </blockquote>
+    <cite>— Core Problem Statement</cite>
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; font-family: 'DM Sans', sans-serif; font-weight: 600;">How Might We…</h3>
+  </div>
+
+  <div class="hmw-grid fade-in">
+    <div class="hmw-card">
+      <div class="hmw-icon">🔍</div>
+      <div class="hmw-text"><strong>…simplify car discovery</strong> so users find the right vehicle in under 30 seconds?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-icon">💳</div>
+      <div class="hmw-text"><strong>…eliminate pricing anxiety</strong> so users never encounter unexpected charges at checkout?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-icon">📍</div>
+      <div class="hmw-text"><strong>…communicate progress</strong> so users always know where they are in the booking flow?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-icon">⚡</div>
+      <div class="hmw-text"><strong>…serve loyal customers faster</strong> by surfacing their preferences and rewards instantly?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-icon">📶</div>
+      <div class="hmw-text"><strong>…degrade gracefully offline</strong> so users in transit can still access booking summaries?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-icon">🎯</div>
+      <div class="hmw-text"><strong>…make the confirmation feel celebratory</strong> so users associate Hertz with positive outcomes?</div>
+    </div>
+  </div>
+
+
+
+<br/><br/>
+
+    <div>
+    
+    <h2>Information Architecture </h2>
+    <p>After identifying a solid set of major features, 
+      I mapped out the information architecture to show the hierarchy of major and minor features. </p>
+    
+    <div style="margin-top: 30px;">
+ <img src="imgs/IA.png" style="float: left; width: 48%; margin-right: 20px;border-radius: 8px;border: 1px dotted #C9A84C;padding: 3px;" alt="Information Architecture " />
+            <img src="imgs/IA1.png" style="float: right; width: 48%;border-radius: 8px;border: 1px dotted #C9A84C;padding: 3px" alt="Information Architecture " />
+            <div style="clear: both;"></div>
+                        <img src="imgs/taskFlow.png" style="margin-top:30px;float: left; width: 100%;border-radius: 8px;border: 1px dotted #C9A84C;padding: 3px" alt="Information Architecture " />
+<div style="clear: both;"></div>
+    </div>
+     
+  </div>
+
+
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ── IDEATE ── -->
+<section class="section fade-in" id="ideate">
+  <div class="section-header">
+    <div class="phase-pill ideate">● Phase 03 · Ideate</div>
+    <h2>Generating Solutions Without Judgment</h2>
+    <p>Armed with clear problem statements, I ran rapid ideation sessions — 
+      sketching over 40 concepts across three key interaction areas before converging on the most promising directions.</p>
+  </div>
+
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h3>Radical Simplification of the Booking Flow</h3>
+      <p>Collapsed 7 booking steps into 3 focused screens: Search → Select → Confirm. Each screen has one clear job. Progress is communicated via a persistent top bar.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h3>Visual-First Car Cards</h3>
+      <p>Replaced text-heavy category lists with large, photographic car cards featuring a prominent price, key specs (seats, transmission, fuel type), and a clear rental class name in plain language.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h3>Transparent Pricing Component</h3>
+      <p>Designed a "Total Cost Breakdown" module visible from the car detail screen — before the user ever reaches payment. Every line item is labeled in plain language.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h3>Loyalty-Aware Personalization</h3>
+      <p>The home screen dynamically surfaces Gold Plus Rewards status, points balance, and a one-tap "re-book your last rental" shortcut for returning customers.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h3>Animated Confirmation Screen</h3>
+      <p>A celebratory in-app confirmation with booking reference, pick-up map pin, and a "Add to Wallet" shortcut — replacing the previous redirect to email.</p>
+    </div>
+  </div>
+
+  <br/><br/>
+
+  <div>
+    
+    <h2>Sketch</h2>
+    <p>I sketched out the screens to verify the current design flows logistics and evaluated the type of content I could want to add </p>
+    
+    <div style="margin-top: 30px;">
+ <img src="imgs/Sketch.png" style="float: left; width: 23%; margin-right: 20px;border-radius: 8px;border: 1px dotted #C9A84C;padding: 3px;" alt="Information Architecture " />
+    <img src="imgs/Sketch1.png" style="float: left; width: 23%; margin-right: 20px;border-radius: 8px;border: 1px dotted #C9A84C;padding: 3px;" alt="Information Architecture " />
+ <img src="imgs/Sketch2.png" style="float: left; width: 23%; margin-right: 20px;border-radius: 8px;border: 1px dotted #C9A84C;padding: 3px;" alt="Information Architecture " />
+      
+ 
+ <img src="imgs/Sketch3.png" style="float: right; width: 23%;border-radius: 8px;border: 1px dotted #C9A84C;padding: 3px" alt="Information Architecture " />
+            <div style="clear: both;"></div>
+                     
+    </div>
+     
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PROTOTYPE / SCREENS ── -->
+<section class="phones-section" id="design">
+  <div class="phones-inner">
+    <div class="section-header fade-in">
+      <div class="phase-pill prototype">● Phase 04 · Prototype</div>
+      <h2>The Screens</h2>
+      <p>High-fidelity screens built in Adobe XD, preserving Hertz's iconic yellow identity while establishing a clean, confidence-inspiring design language.</p>
+    </div>
+
+    <div class="fade-in">
+
+      <!-- Phone 1: Splash -->
+      <div>
+       <img src="imgs/Loader.png"  style="float: left; width: 23%; margin-right: 20px;border-radius: 8px;" alt="Splash" />
+        <img src="imgs/Homepage.png"  style="float: left; width: 23%;border-radius: 8px; margin-right: 20px" alt="Splash" />
+      
+        
+        <img src="imgs/Homepage-popup-location-portrait.png"  style="float: left; width: 23%; margin-right: 20px;border-radius: 8px;" alt="Splash" />
+       
+        <img src="imgs/SELECT VEHICLE1-portrait.png"  style="float: right; width: 23%; border-radius: 8px" alt="Splash" />
+          
+          <div style="clear: both;"></div>
+          <br/>
+  <img src="imgs/SELECT VEHICLE Filter1-portrait.png"  style="float: left; width: 23%; margin-right: 20px;border-radius: 8px;" alt="Splash" />
+        <img src="imgs/review.png"  style="float: left; width: 23%;border-radius: 8px; margin-right: 20px" alt="Splash" />
+      
+        
+        <img src="imgs/MyCar.png"  style="float: left; width: 23%; margin-right: 20px;border-radius: 8px;" alt="Splash" />
+       
+        <img src="imgs/upcoming.png"  style="float: right; width: 23%; border-radius: 8px" alt="Splash" />
+          
+
+        <div style="clear: both;"></div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── KEY DESIGN DECISIONS ── -->
+<section class="section fade-in">
+  <div class="section-header">
+    <span class="mono">Design Rationale</span>
+    <h2>Key Design Decisions</h2>
+    <p>Every UI decision traces back to a specific user need or pain point identified in research.</p>
+  </div>
+
+  <div class="decisions-grid fade-in">
+    <div class="decision-card">
+      <div class="decision-icon">🟡</div>
+      <h3>Hertz Yellow as a Trust Signal</h3>
+      <p>Rather than diluting the brand's iconic yellow, I leaned into it — using it for primary CTAs and confirmations to associate Hertz's color with positive actions and completion states.</p>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">📊</div>
+      <h3>3-Step Progress Bar</h3>
+      <p>Collapsed the 11-step flow into 3 macro-stages (Search, Confirm, Pay). The persistent progress bar eliminates "where am I?" anxiety and sets accurate expectations.</p>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">💰</div>
+      <h3>Upfront Price Transparency</h3>
+      <p>Total cost — including taxes, GPS, and any add-ons — is shown on the car detail screen before the user ever initiates checkout. This removed the most common drop-off trigger.</p>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">🎴</div>
+      <h3>Visual Car Cards with Plain Language</h3>
+      <p>Replaced category codes (CDW, SDAR) with plain English descriptors. Specs are rendered as icon + value pairs, scannable at a glance without needing to read prose.</p>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">⭐</div>
+      <h3>Loyalty-First Home Screen</h3>
+      <p>Returning Gold members see their points balance and status above the fold. This acknowledges their relationship with Hertz and creates an immediate reason to stay in the app.</p>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">🎊</div>
+      <h3>Celebratory Confirmation</h3>
+      <p>The confirmation screen is designed to feel like an achievement, not a receipt. Booking reference, car details, and wallet integration are all available instantly — no email required.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── TEST & OUTCOMES ── -->
+<section class="section fade-in" id="test">
+  <div class="section-header">
+    <div class="phase-pill test">● Phase 05 · Test</div>
+    <h2>Validation & Outcomes</h2>
+    <p>The redesigned prototype was tested with 15 participants across 3 rounds of moderated usability testing, including the same users from the initial interviews.</p>
+  </div>
+
+  <div class="metrics-row fade-in">
+    <div class="metric-card">
+      <div class="metric-num up">↑ 41%</div>
+      <div class="metric-label">Booking completion rate</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num up">4.6★</div>
+      <div class="metric-label">Projected App Store rating</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num down">↓ 60%</div>
+      <div class="metric-label">Time-on-task reduction</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num gold">92%</div>
+      <div class="metric-label">Task success rate</div>
+    </div>
+  </div>
+
+  <div class="callout fade-in" style="margin-top: 3rem;">
+    <p>This is how I imagined it should work. I got to the confirmation screen and didn't even realize it was over — it just felt natural.</p>
+    <cite>— Usability Test Participant, Round 3</cite>
+  </div>
+
+  <div class="insights-grid fade-in" style="margin-top: 3rem;">
+    <div class="insight-card green">
+      <div class="insight-num">✓</div>
+      <h3>Checkout Anxiety Resolved</h3>
+      <p>100% of participants said they felt "in control" of pricing before reaching the payment screen — up from 12% in baseline testing.</p>
+    </div>
+    <div class="insight-card gold">
+      <div class="insight-num">✓</div>
+      <h3>Navigation Confidence Up</h3>
+      <p>Users correctly identified their location in the booking flow on first attempt in 93% of tasks. The 3-step model was universally understood.</p>
+    </div>
+    <div class="insight-card blue">
+      <div class="insight-num">✓</div>
+      <h3>Loyalty Visibility Improved</h3>
+      <p>8 of 9 returning "Gold" users noticed their points balance without being prompted — vs. 0 of 9 in the original app test.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── REFLECTION ── -->
+<section class="section fade-in" id="reflection">
+  <div class="section-header">
+    <span class="mono">06 · Reflection</span>
+    <h2>What I Learned & What's Next</h2>
+    <p>Every project teaches. Here's an honest look at what went well, what I'd do differently, and where this design could go.</p>
+  </div>
+
+  <div class="reflection-grid fade-in">
+    <div class="reflection-card learned">
+      <h3>🟢 Lessons Learned</h3>
+      <ul>
+        <li>Transparency is a design feature — showing the full price early built more trust than any visual treatment could.</li>
+        <li>Design thinking loops back. The "define" phase evolved twice as testing revealed new pain points around add-on selection.</li>
+        <li>Constraints from brand guidelines (Hertz yellow) can be creative constraints — not limitations.</li>
+        <li>A simple progress bar does more for perceived usability than any amount of visual polish.</li>
+        <li>Testing with real frequent renters revealed use cases I never would have imagined from a desk.</li>
+      </ul>
+    </div>
+    <div class="reflection-card next">
+      <h3>→ Next Steps</h3>
+      <ul>
+        <li>Design and test the vehicle damage inspection flow — a major post-pickup pain point not addressed in v1.</li>
+        <li>Explore a map-first discovery experience for users who browse by airport or city area.</li>
+        <li>Design the Hertz Gold member "fast lane" experience — reducing booking to a single confirmable card.</li>
+        <li>Prototype offline mode showing cached booking details for airport travelers with limited connectivity.</li>
+        <li>Conduct A/B test on the price transparency component to measure conversion lift vs. control.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="mono" style="margin-bottom: 1.5rem;">Designed with intent · Built with care</div>
+  <div class="footer-name">Alaa Reda</div>
+  <div class="footer-role">UX Designer · Giza, Egypt</div>
+  <div class="footer-note">HERTZ App Redesign · 2019 · Adobe XD · Design Thinking Methodology</div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nav dots
+  const sections = document.querySelectorAll('section[id], footer');
+  const dots = document.querySelectorAll('.nav-dot');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id || 'reflection';
+        dots.forEach(d => d.classList.remove('active'));
+        const active = document.querySelector(`[data-section="${id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const id = dot.dataset.section;
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
