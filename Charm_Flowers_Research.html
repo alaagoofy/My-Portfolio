@@ -786,6 +786,69 @@
       .flow-diagram { flex-direction: column; }
       .flow-step::after { display: none; }
     }
+
+    /* ══ INJECTED: Wireframe and UI Showcase Styles ══ */
+    .evidence-tag {
+      display:inline-flex;align-items:center;gap:6px;
+      padding:5px 13px;border-radius:999px;
+      background:rgba(200,65,110,.08);border:1px solid rgba(200,65,110,.2);
+      font-size:10px;font-weight:700;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--rose);margin-bottom:14px;
+    }
+    .evidence-tag .ev-dot{width:5px;height:5px;border-radius:50%;background:var(--rose)}
+    .screens-label{
+      font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;
+      color:var(--muted);margin-bottom:18px;
+      display:flex;align-items:center;gap:14px;
+    }
+    .screens-label::after{content:'';flex:1;height:1px;background:var(--line)}
+    .screens-3up{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .screen-wrap{display:flex;flex-direction:column;gap:8px}
+    .screen-cap{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center}
+    .screen-desc{font-size:11px;color:var(--muted);text-align:center;line-height:1.55}
+    .ann-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+    .annotation{background:var(--dark);color:white;border-radius:7px;padding:5px 10px;font-size:9.5px;font-weight:600;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+    .ann-dot{width:5px;height:5px;border-radius:50%;background:var(--blush);flex-shrink:0}
+    .ui-frame-outer{border-radius:18px;overflow:hidden;box-shadow:0 0 0 1.5px rgba(200,65,110,.25),var(--shadow-lg)}
+    .ui-frame-bar{height:30px;background:#0e0b18;display:flex;align-items:center;padding:0 14px;gap:7px}
+    .ui-fb-dot{width:9px;height:9px;border-radius:50%}
+    .ui-frame-body{background:#faf7fc;overflow:hidden}
+    /* Low-fi sketch */
+    .wf-sketch{background:#fff;border:2px solid #1e1830;border-radius:14px;padding:16px;font-family:'DM Mono',monospace}
+    .wf-nav-bar{height:14px;background:#f0edf5;border-radius:5px;margin-bottom:10px;display:flex;align-items:center;padding:0 6px;gap:5px;border:1.5px solid #c8c0d8}
+    .wf-nav-dot{width:5px;height:5px;border-radius:50%;background:#c8c0d8;flex-shrink:0}
+    .wf-nav-url{flex:1;height:7px;background:#e0dcea;border-radius:3px;margin-left:5px}
+    .wf-hero-block{background:repeating-linear-gradient(45deg,#f8f6fc,#f8f6fc 4px,#ede7f4 4px,#ede7f4 8px);border-radius:8px;padding:14px 10px;margin-bottom:8px;border:1.5px dashed #c8b8d8;text-align:center}
+    .wf-h1{height:8px;background:#1e1830;border-radius:3px;opacity:.5;width:55%;margin:0 auto 5px}
+    .wf-sub{height:5px;background:#c8b8d8;border-radius:3px;width:75%;margin:0 auto 10px}
+    .wf-cta-btn{height:16px;width:70px;background:#c8416e;border-radius:999px;margin:0 auto;opacity:.75;display:block}
+    .wf-row-label{font-size:7px;color:#c8b8d8;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+    .wf-5col{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:8px}
+    .wf-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+    .wf-2col{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+    .wf-em-pill{height:14px;border-radius:999px;border:1.5px dashed #c8b8d8;background:#faf7fc}
+    .wf-card-mini{border:1.5px dashed #c8b8d8;border-radius:8px;background:#faf7fc;padding:6px}
+    .wf-card-img{height:34px;background:repeating-linear-gradient(45deg,#ede7f4,#ede7f4 3px,#fff 3px,#fff 6px);border-radius:5px;margin-bottom:4px}
+    .wf-line-dark{height:5px;background:#c8b8d8;border-radius:3px;margin-bottom:3px}
+    .wf-line-short{height:5px;background:#c8b8d8;border-radius:3px;width:50%}
+    .wf-price-line{height:5px;background:#c8416e;border-radius:3px;width:35%;opacity:.55;margin-top:5px}
+    .wf-sidebar-wrap{display:grid;grid-template-columns:58px 1fr;gap:6px}
+    .wf-sb{border:1.5px dashed #c8b8d8;border-radius:7px;padding:6px}
+    .wf-sb-line{height:6px;background:#c8b8d8;border-radius:3px;margin-bottom:4px}
+    .wf-sb-line-on{height:6px;background:#c8416e;border-radius:3px;margin-bottom:4px;opacity:.6}
+    .wf-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+    .wf-big-img{height:70px;background:repeating-linear-gradient(45deg,#fce8f0,#fce8f0 4px,#fff 4px,#fff 8px);border-radius:8px;border:1.5px dashed #c8b8d8;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:5px}
+    .wf-thumb-row{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:6px}
+    .wf-thumb-box{height:16px;border-radius:4px;border:1.5px dashed #c8b8d8;background:#faf7fc}
+    .wf-thumb-box.on{border-color:#c8416e;background:#fce8f0}
+    .wf-info-title{height:10px;background:#1e1830;border-radius:3px;opacity:.4;margin-bottom:4px}
+    .wf-info-sub{height:6px;background:#c8b8d8;border-radius:3px;width:70%;margin-bottom:6px}
+    .wf-price-big{height:10px;background:#c8416e;border-radius:3px;width:35%;opacity:.65;margin-bottom:8px}
+    .wf-size-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-bottom:6px}
+    .wf-size-box{height:20px;border-radius:5px;border:1.5px dashed #c8b8d8}
+    .wf-size-box.on{border-color:#c8416e;background:#fce8f0;opacity:.8}
+    .wf-atc{height:18px;background:#c8416e;border-radius:999px;opacity:.8;margin-top:4px}
+    @media(max-width:900px){.screens-3up{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -1524,6 +1587,354 @@
                 </div>
               </div>
             </div>
+
+            <!-- INJECTED: Low-Fidelity Wireframes -->
+            <div style="margin-top:44px" class="reveal">
+              <div class="evidence-tag"><span class="ev-dot"></span>Wireframe Evidence &mdash; Lo-Fi Process</div>
+              <div class="card-title" style="margin-bottom:20px">Low-Fidelity Sketches &mdash; 3 Core Screens</div>
+              <div class="screens-3up">
+
+                <div class="screen-wrap">
+                  <div class="screen-cap">01 &mdash; Homepage</div>
+                  <div class="wf-sketch">
+                    <div class="wf-nav-bar"><div class="wf-nav-dot"></div><div class="wf-nav-dot"></div><div class="wf-nav-dot"></div><div class="wf-nav-url"></div></div>
+                    <div style="height:14px;background:#f0edf5;border-radius:5px;margin-bottom:8px;border:1.5px dashed #c8b8d8;display:flex;align-items:center;padding:0 5px;gap:4px">
+                      <div style="width:36px;height:5px;background:#1e1830;border-radius:2px;opacity:.3"></div>
+                      <div style="flex:1"></div>
+                      <div style="width:18px;height:5px;background:#c8b8d8;border-radius:2px"></div>
+                      <div style="width:18px;height:5px;background:#c8b8d8;border-radius:2px"></div>
+                      <div style="width:24px;height:10px;background:#c8416e;border-radius:999px;opacity:.7"></div>
+                    </div>
+                    <div class="wf-hero-block">
+                      <div class="wf-h1"></div>
+                      <div class="wf-h1" style="width:38%;opacity:.25"></div>
+                      <div class="wf-sub"></div>
+                      <div class="wf-cta-btn"></div>
+                    </div>
+                    <div class="wf-row-label">Emotion entry &rarr;</div>
+                    <div class="wf-5col" style="margin-bottom:8px">
+                      <div class="wf-em-pill"></div><div class="wf-em-pill"></div>
+                      <div class="wf-em-pill"></div><div class="wf-em-pill"></div>
+                      <div class="wf-em-pill"></div>
+                    </div>
+                    <div class="wf-row-label">Products &rarr;</div>
+                    <div class="wf-3col">
+                      <div class="wf-card-mini"><div class="wf-card-img"></div><div class="wf-line-dark"></div><div class="wf-line-short"></div><div class="wf-price-line"></div></div>
+                      <div class="wf-card-mini"><div class="wf-card-img"></div><div class="wf-line-dark"></div><div class="wf-line-short"></div><div class="wf-price-line"></div></div>
+                      <div class="wf-card-mini"><div class="wf-card-img"></div><div class="wf-line-dark"></div><div class="wf-line-short"></div><div class="wf-price-line"></div></div>
+                    </div>
+                  </div>
+                  <div class="ann-row">
+                    <span class="annotation"><span class="ann-dot"></span>Emotion entry, no catalog default</span>
+                    <span class="annotation"><span class="ann-dot"></span>Minimal nav, clear CTA</span>
+                  </div>
+                  <div class="screen-desc">Hero surfaces emotion intent before any product appears</div>
+                </div>
+
+                <div class="screen-wrap">
+                  <div class="screen-cap">02 &mdash; Shop Listing</div>
+                  <div class="wf-sketch">
+                    <div class="wf-nav-bar"><div class="wf-nav-dot"></div><div class="wf-nav-dot"></div><div class="wf-nav-dot"></div><div class="wf-nav-url"></div></div>
+                    <div style="height:14px;background:#f0edf5;border:1.5px dashed #c8b8d8;border-radius:5px;display:flex;align-items:center;gap:4px;padding:0 5px;margin-bottom:7px">
+                      <div style="width:20px;height:8px;background:#c8416e;border-radius:999px;opacity:.75"></div>
+                      <div style="width:20px;height:8px;background:#c8b8d8;border-radius:999px"></div>
+                      <div style="width:20px;height:8px;background:#c8b8d8;border-radius:999px"></div>
+                      <div style="flex:1"></div>
+                      <div style="width:16px;height:8px;background:#c8b8d8;border-radius:3px"></div>
+                    </div>
+                    <div class="wf-sidebar-wrap">
+                      <div class="wf-sb">
+                        <div class="wf-sb-line-on"></div>
+                        <div class="wf-sb-line"></div>
+                        <div class="wf-sb-line"></div>
+                        <div class="wf-sb-line"></div>
+                        <div style="height:1px;background:#c8b8d8;margin:5px 0"></div>
+                        <div class="wf-sb-line"></div>
+                        <div class="wf-sb-line"></div>
+                        <div style="height:1px;background:#c8b8d8;margin:5px 0"></div>
+                        <div class="wf-sb-line"></div>
+                      </div>
+                      <div>
+                        <div class="wf-2col">
+                          <div class="wf-card-mini"><div class="wf-card-img"></div><div class="wf-line-dark"></div><div class="wf-price-line"></div></div>
+                          <div class="wf-card-mini"><div class="wf-card-img"></div><div class="wf-line-dark"></div><div class="wf-price-line"></div></div>
+                          <div class="wf-card-mini"><div class="wf-card-img"></div><div class="wf-line-dark"></div><div class="wf-price-line"></div></div>
+                          <div class="wf-card-mini"><div class="wf-card-img"></div><div class="wf-line-dark"></div><div class="wf-price-line"></div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ann-row">
+                    <span class="annotation"><span class="ann-dot"></span>Sidebar: emotion + price filter</span>
+                    <span class="annotation"><span class="ann-dot"></span>Sticky filter pills</span>
+                  </div>
+                  <div class="screen-desc">Sidebar narrows by feeling; top bar allows instant switching</div>
+                </div>
+
+                <div class="screen-wrap">
+                  <div class="screen-cap">03 &mdash; View Item</div>
+                  <div class="wf-sketch">
+                    <div class="wf-nav-bar"><div class="wf-nav-dot"></div><div class="wf-nav-dot"></div><div class="wf-nav-dot"></div><div class="wf-nav-url"></div></div>
+                    <div class="wf-detail-grid">
+                      <div>
+                        <div class="wf-big-img">&#127801;</div>
+                        <div class="wf-thumb-row">
+                          <div class="wf-thumb-box on"></div>
+                          <div class="wf-thumb-box"></div>
+                          <div class="wf-thumb-box"></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div style="height:5px;background:#c8416e;border-radius:2px;width:45%;opacity:.5;margin-bottom:4px"></div>
+                        <div class="wf-info-title"></div>
+                        <div class="wf-info-sub"></div>
+                        <div class="wf-price-big"></div>
+                        <div style="font-size:6px;color:#c8b8d8;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">Size</div>
+                        <div class="wf-size-grid">
+                          <div class="wf-size-box"></div>
+                          <div class="wf-size-box on"></div>
+                          <div class="wf-size-box"></div>
+                          <div class="wf-size-box"></div>
+                        </div>
+                        <div style="font-size:6px;color:#c8b8d8;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">Add-ons</div>
+                        <div class="wf-2col" style="gap:3px;margin-bottom:6px">
+                          <div style="height:14px;border:1.5px dashed #c8b8d8;border-radius:5px"></div>
+                          <div style="height:14px;border:1.5px dashed #c8b8d8;border-radius:5px"></div>
+                        </div>
+                        <div class="wf-atc"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ann-row">
+                    <span class="annotation"><span class="ann-dot"></span>Image + 3 variants</span>
+                    <span class="annotation"><span class="ann-dot"></span>Size &amp; add-on selectors</span>
+                    <span class="annotation"><span class="ann-dot"></span>Live price CTA</span>
+                  </div>
+                  <div class="screen-desc">Guided customisation with live price update before checkout</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- INJECTED: Hi-Fidelity UI Evidence -->
+            <div style="margin-top:52px" class="reveal">
+              <div class="evidence-tag"><span class="ev-dot"></span>Final UI &mdash; High-Fidelity Deliverable</div>
+              <div class="card-title" style="margin-bottom:8px">Sketch &rarr; Screen: The Final Interfaces</div>
+              <div style="font-size:13px;color:var(--muted);max-width:580px;margin-bottom:28px;line-height:1.75">The final UI applies the emotion-first framework across all three core screens. Each screen in the purchase journey speaks the same emotional language established in research.</div>
+
+              <!-- SCREEN 01: Homepage -->
+              <div style="margin-bottom:44px">
+                <div class="screens-label">Screen 01 &mdash; Homepage</div>
+                <div class="ui-frame-outer">
+                  <div class="ui-frame-bar">
+                    <div class="ui-fb-dot" style="background:#ff5f57"></div>
+                    <div class="ui-fb-dot" style="background:#ffbd2e"></div>
+                    <div class="ui-fb-dot" style="background:#28c840"></div>
+                    <div style="flex:1;height:13px;background:rgba(255,255,255,.08);border-radius:5px;margin-left:10px"></div>
+                  </div>
+                  <div class="ui-frame-body">
+                    <div style="background:rgba(250,247,252,.95);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ede7f4">
+                      <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600">Flowers<em style="color:#c8416e;font-style:italic">Builder</em></div>
+                      <div style="display:flex;gap:14px;font-size:11px;color:#7a6e8a"><span>Shop</span><span>Occasions</span><span>Build Yours</span></div>
+                      <div style="background:linear-gradient(135deg,#c8416e,#a02e56);color:white;padding:6px 14px;border-radius:999px;font-size:10px;font-weight:700">Build Bouquet</div>
+                    </div>
+                    <div style="background:linear-gradient(155deg,#fdf9ff,#fff5f8 45%,#f5fbf7);padding:36px 28px 24px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;align-items:center">
+                      <div>
+                        <div style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:rgba(200,65,110,.08);border:1px solid rgba(200,65,110,.18);font-size:9px;font-weight:700;letter-spacing:.12em;color:#c8416e;text-transform:uppercase;margin-bottom:14px"><span style="width:5px;height:5px;border-radius:50%;background:#c8416e;animation:blink 2s ease infinite"></span>Same-day delivery &middot; Emotion-first gifting</div>
+                        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;line-height:.93;letter-spacing:-.04em;font-weight:600;margin-bottom:12px">Say it with<br>flowers that<br><em style="color:#c8416e;font-style:italic">truly mean it.</em></div>
+                        <div style="font-size:12px;color:#7a6e8a;margin-bottom:16px;max-width:320px">Tell us how you feel. We&apos;ll find the perfect bouquet &mdash; guided by emotion, crafted by florists.</div>
+                        <div style="display:flex;gap:8px">
+                          <div style="background:linear-gradient(135deg,#c8416e,#a02e56);color:white;padding:9px 18px;border-radius:999px;font-size:11px;font-weight:700;box-shadow:0 6px 20px rgba(200,65,110,.3)">Build Your Bouquet</div>
+                          <div style="background:white;border:1px solid #ede7f4;padding:9px 18px;border-radius:999px;font-size:11px;font-weight:600">Browse Collection</div>
+                        </div>
+                      </div>
+                      <div style="background:white;border-radius:28px;padding:14px;box-shadow:0 24px 80px rgba(20,10,40,.15),0 0 0 1px #ede7f4;transform:rotate(1.5deg)">
+                        <div style="width:50px;height:14px;background:#14101e;border-radius:999px;margin:0 auto 10px"></div>
+                        <div style="background:linear-gradient(155deg,#fff5f8,#fdfbff);border-radius:18px;padding:14px">
+                          <div style="font-size:8px;text-transform:uppercase;letter-spacing:.14em;color:#c8416e;font-weight:700;margin-bottom:5px">Build by feeling</div>
+                          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;margin-bottom:10px">What emotion do you want to send?</div>
+                          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
+                            <div style="background:#fff0f5;border:1px solid #ffd4e4;border-radius:10px;padding:8px;text-align:center;font-size:9px;font-weight:700;color:#c8416e"><div style="font-size:18px;margin-bottom:3px">&#127801;</div>Love</div>
+                            <div style="background:#f0fff7;border:1px solid #c5eddb;border-radius:10px;padding:8px;text-align:center;font-size:9px;font-weight:700;color:#4a7c6a"><div style="font-size:18px;margin-bottom:3px">&#128154;</div>Care</div>
+                            <div style="background:#f5f0ff;border:1px solid #ddd0f5;border-radius:10px;padding:8px;text-align:center;font-size:9px;font-weight:700;color:#6b4ab0"><div style="font-size:18px;margin-bottom:3px">&#10024;</div>Celebrate</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="background:#0e0b18;padding:9px 0;text-align:center;font-size:9px;color:rgba(255,255,255,.6);letter-spacing:.08em">
+                      &#10022; Same-day delivery before 3pm &nbsp;&middot;&nbsp; <span style="color:#f2a0bc;font-weight:700">NEW</span> Valentine&apos;s edit is live &nbsp;&middot;&nbsp; 2,400+ five-star reviews &nbsp;&middot;&nbsp; Free delivery over &pound;60 &#10022;
+                    </div>
+                    <div style="padding:24px 28px;background:white">
+                      <div style="text-align:center;margin-bottom:18px">
+                        <div style="font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:#c8416e;font-weight:700;margin-bottom:6px">Shop by Feeling</div>
+                        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;letter-spacing:-.03em">What do you want to express today?</div>
+                      </div>
+                      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+                        <div style="background:#fff0f5;border:1.5px solid #ffd4e4;border-radius:20px;padding:16px 8px;text-align:center"><div style="font-size:24px;margin-bottom:5px">&#127801;</div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:#c8416e">Love</div><div style="font-size:9px;color:#7a6e8a;background:#fce8f0;padding:2px 8px;border-radius:999px;display:inline-block;margin-top:5px">18</div></div>
+                        <div style="background:#fff9f0;border:1.5px solid #ffe4c0;border-radius:20px;padding:16px 8px;text-align:center"><div style="font-size:24px;margin-bottom:5px">&#127881;</div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:#b87a20">Celebrate</div><div style="font-size:9px;color:#7a6e8a;background:#fff3e0;padding:2px 8px;border-radius:999px;display:inline-block;margin-top:5px">14</div></div>
+                        <div style="background:#f0fff7;border:1.5px solid #c5eddb;border-radius:20px;padding:16px 8px;text-align:center"><div style="font-size:24px;margin-bottom:5px">&#128154;</div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:#4a7c6a">Care</div><div style="font-size:9px;color:#7a6e8a;background:#d4ede6;padding:2px 8px;border-radius:999px;display:inline-block;margin-top:5px">12</div></div>
+                        <div style="background:#f5f0ff;border:1.5px solid #ddd0f5;border-radius:20px;padding:16px 8px;text-align:center"><div style="font-size:24px;margin-bottom:5px">&#128330;</div><div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:#6b4ab0">Make it Right</div><div style="font-size:9px;color:#7a6e8a;background:#f0e8ff;padding:2px 8px;border-radius:999px;display:inline-block;margin-top:5px">9</div></div>
+                        <div style="background:#f0f5ff;border:1.5px solid #c5d4f0;border-radius:20px;padding:16px 8px;text-align:center"><div style="font-size:24px;margin-bottom:5px">&#9999;</div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:#2a4ab0">Custom</div><div style="font-size:9px;color:#7a6e8a;background:#e8eeff;padding:2px 8px;border-radius:999px;display:inline-block;margin-top:5px">All &rarr;</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ann-row" style="margin-top:14px">
+                  <span class="annotation"><span class="ann-dot"></span>Hero communicates emotion before product</span>
+                  <span class="annotation"><span class="ann-dot"></span>5 emotion tiles replace open browse</span>
+                  <span class="annotation"><span class="ann-dot"></span>Phone mockup shows in-app flow</span>
+                  <span class="annotation"><span class="ann-dot"></span>Trust ticker below hero</span>
+                </div>
+              </div>
+
+              <!-- SCREEN 02: Shop Listing -->
+              <div style="margin-bottom:44px">
+                <div class="screens-label">Screen 02 &mdash; Shop / All Products</div>
+                <div class="ui-frame-outer">
+                  <div class="ui-frame-bar">
+                    <div class="ui-fb-dot" style="background:#ff5f57"></div>
+                    <div class="ui-fb-dot" style="background:#ffbd2e"></div>
+                    <div class="ui-fb-dot" style="background:#28c840"></div>
+                    <div style="flex:1;height:13px;background:rgba(255,255,255,.08);border-radius:5px;margin-left:10px"></div>
+                  </div>
+                  <div class="ui-frame-body">
+                    <div style="background:linear-gradient(160deg,#fdf9ff,#fff5f8,#f5fbf7);padding:24px 28px 18px">
+                      <div style="font-size:9px;color:#7a6e8a;margin-bottom:10px">Home &rsaquo; <strong style="color:#14101e">Shop</strong></div>
+                      <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end">
+                        <div>
+                          <div style="font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#c8416e;font-weight:700;margin-bottom:6px">The Full Collection</div>
+                          <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;letter-spacing:-.04em;line-height:.95;margin-bottom:8px">Every feeling,<br><em style="color:#c8416e">beautifully</em> arranged.</div>
+                          <div style="display:flex;gap:14px;font-size:9px;color:#7a6e8a"><span>&#127807; Sustainably sourced</span><span>&#128666; Same-day</span><span>&#11088; 4.9 &middot; 2,400 reviews</span></div>
+                        </div>
+                        <div style="text-align:right"><div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:#ede7f4;line-height:1;letter-spacing:-.06em">24</div><div style="font-size:9px;color:#7a6e8a">arrangements</div></div>
+                      </div>
+                    </div>
+                    <div style="background:white;border-bottom:1px solid #ede7f4;padding:10px 28px;display:flex;align-items:center;gap:6px">
+                      <div style="background:#c8416e;color:white;padding:5px 12px;border-radius:999px;font-size:9px;font-weight:700">All</div>
+                      <div style="border:1px solid #ede7f4;color:#7a6e8a;padding:5px 12px;border-radius:999px;font-size:9px">&#127801; Love</div>
+                      <div style="border:1px solid #ede7f4;color:#7a6e8a;padding:5px 12px;border-radius:999px;font-size:9px">&#127881; Celebrate</div>
+                      <div style="border:1px solid #ede7f4;color:#7a6e8a;padding:5px 12px;border-radius:999px;font-size:9px">&#128154; Care</div>
+                      <div style="border:1px solid #ede7f4;color:#7a6e8a;padding:5px 12px;border-radius:999px;font-size:9px">&#128330; Make it Right</div>
+                      <div style="flex:1"></div>
+                      <div style="border:1px solid #ede7f4;border-radius:6px;padding:4px 10px;font-size:9px;color:#7a6e8a">Sort &#8597;</div>
+                      <div style="display:flex;gap:3px">
+                        <div style="width:20px;height:20px;border-radius:5px;background:#14101e;display:flex;align-items:center;justify-content:center;color:white;font-size:9px">&#8862;</div>
+                        <div style="width:20px;height:20px;border-radius:5px;background:white;border:1px solid #ede7f4;display:flex;align-items:center;justify-content:center;font-size:9px">&#9776;</div>
+                      </div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:170px 1fr;gap:0">
+                      <div style="background:white;border-right:1px solid #ede7f4;padding:18px;min-height:280px">
+                        <div style="font-size:8px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;color:#14101e;margin-bottom:12px">Shop by Feeling</div>
+                        <div style="display:flex;align-items:center;gap:7px;padding:7px 9px;background:#fce8f0;border-radius:8px;border:1px solid rgba(200,65,110,.2);margin-bottom:4px"><span style="font-size:13px">&#127801;</span><span style="font-size:10px;font-weight:600;color:#c8416e;flex:1">Love</span><span style="font-size:9px;background:rgba(200,65,110,.12);color:#c8416e;padding:1px 6px;border-radius:999px">8</span></div>
+                        <div style="display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:8px;margin-bottom:4px"><span style="font-size:13px">&#127881;</span><span style="font-size:10px;color:#7a6e8a;flex:1">Celebrate</span><span style="font-size:9px;background:#f0edf5;color:#7a6e8a;padding:1px 6px;border-radius:999px">6</span></div>
+                        <div style="display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:8px;margin-bottom:12px"><span style="font-size:13px">&#128154;</span><span style="font-size:10px;color:#7a6e8a;flex:1">Care</span><span style="font-size:9px;background:#f0edf5;color:#7a6e8a;padding:1px 6px;border-radius:999px">5</span></div>
+                        <div style="height:1px;background:#ede7f4;margin-bottom:12px"></div>
+                        <div style="font-size:8px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:#14101e;margin-bottom:8px">Price Range</div>
+                        <div style="height:4px;background:#ede7f4;border-radius:999px;margin-bottom:5px;position:relative"><div style="position:absolute;left:0;top:0;height:4px;width:72%;background:linear-gradient(90deg,#c8416e,#f2a0bc);border-radius:999px"></div></div>
+                        <div style="font-size:10px;color:#c8416e;font-weight:700">Up to &pound;110</div>
+                        <div style="height:1px;background:#ede7f4;margin:12px 0"></div>
+                        <div style="font-size:8px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:#14101e;margin-bottom:8px">Bouquet Size</div>
+                        <div style="display:grid;gap:4px;font-size:10px;color:#7a6e8a">
+                          <label style="display:flex;align-items:center;gap:6px"><input type="checkbox" style="accent-color:#c8416e" checked>Classic (10&ndash;15 stems)</label>
+                          <label style="display:flex;align-items:center;gap:6px"><input type="checkbox" style="accent-color:#c8416e" checked>Luxury (20&ndash;25 stems)</label>
+                          <label style="display:flex;align-items:center;gap:6px"><input type="checkbox" style="accent-color:#c8416e">Grand (30+ stems)</label>
+                        </div>
+                      </div>
+                      <div style="padding:18px;background:#faf7fc">
+                        <div style="font-size:9px;color:#7a6e8a;margin-bottom:12px">Showing <strong style="color:#14101e">12</strong> arrangements</div>
+                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+                          <div style="background:white;border:1px solid #ede7f4;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(20,10,40,.07)"><div style="height:76px;background:linear-gradient(135deg,#ffe0ec,#ffd0e4);display:flex;align-items:center;justify-content:center;font-size:34px;position:relative">&#127801;<div style="position:absolute;top:6px;left:6px;background:rgba(252,232,240,.92);color:#c8416e;font-size:7px;font-weight:700;padding:2px 7px;border-radius:999px;text-transform:uppercase;letter-spacing:.07em">Love</div><div style="position:absolute;top:6px;right:6px;font-size:14px">&#9825;</div></div><div style="padding:11px"><div style="font-size:8px;color:#c8416e;font-weight:700;margin-bottom:3px">Romance &amp; Devotion</div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;margin-bottom:3px">Crimson Affair</div><div style="font-size:10px;color:#7a6e8a;margin-bottom:8px;line-height:1.4">Classic red roses &mdash; the timeless language of love</div><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:#c8416e">&pound;58</span><div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#c8416e,#a02e56);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;box-shadow:0 4px 12px rgba(200,65,110,.3)">+</div></div></div></div>
+                          <div style="background:white;border:1px solid #ede7f4;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(20,10,40,.07)"><div style="height:76px;background:linear-gradient(135deg,#ffd8e8,#ffbcd8);display:flex;align-items:center;justify-content:center;font-size:34px">&#127800;</div><div style="padding:11px"><div style="font-size:8px;color:#c8416e;font-weight:700;margin-bottom:3px">Soft &amp; Tender</div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;margin-bottom:3px">Blush Whisper</div><div style="font-size:10px;color:#7a6e8a;margin-bottom:8px;line-height:1.4">Peonies and blush roses for quiet adoration</div><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:#c8416e">&pound;46</span><div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#c8416e,#a02e56);display:flex;align-items:center;justify-content:center;color:white;font-size:16px">+</div></div></div></div>
+                          <div style="background:white;border:1px solid #ede7f4;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(20,10,40,.07)"><div style="height:76px;background:linear-gradient(135deg,#d0f5e8,#c0eedd);display:flex;align-items:center;justify-content:center;font-size:34px">&#129655;</div><div style="padding:11px"><div style="font-size:8px;color:#4a7c6a;font-weight:700;margin-bottom:3px">Calm &amp; Comfort</div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;margin-bottom:3px">Serene Garden</div><div style="font-size:10px;color:#7a6e8a;margin-bottom:8px;line-height:1.4">Lilies and eucalyptus for moments of care</div><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:#c8416e">&pound;42</span><div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#4a7c6a,#2e5c4a);display:flex;align-items:center;justify-content:center;color:white;font-size:16px">+</div></div></div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ann-row" style="margin-top:14px">
+                  <span class="annotation"><span class="ann-dot"></span>Sidebar filters by emotion and price</span>
+                  <span class="annotation"><span class="ann-dot"></span>Sticky emotion pill bar</span>
+                  <span class="annotation"><span class="ann-dot"></span>Grid/List view toggle</span>
+                  <span class="annotation"><span class="ann-dot"></span>Meaning copy on every card</span>
+                </div>
+              </div>
+
+              <!-- SCREEN 03: View Item -->
+              <div>
+                <div class="screens-label">Screen 03 &mdash; View Item / Product Detail</div>
+                <div class="ui-frame-outer">
+                  <div class="ui-frame-bar">
+                    <div class="ui-fb-dot" style="background:#ff5f57"></div>
+                    <div class="ui-fb-dot" style="background:#ffbd2e"></div>
+                    <div class="ui-fb-dot" style="background:#28c840"></div>
+                    <div style="flex:1;height:13px;background:rgba(255,255,255,.08);border-radius:5px;margin-left:10px"></div>
+                  </div>
+                  <div class="ui-frame-body">
+                    <div style="padding:12px 28px 0;font-size:9px;color:#7a6e8a">Home &rsaquo; Shop &rsaquo; <strong style="color:#14101e">Crimson Affair</strong></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:20px 28px 32px">
+                      <div>
+                        <div style="background:linear-gradient(135deg,#ffe0ec,#ffd0e4,#f5d0ff);border-radius:24px;height:248px;display:flex;align-items:center;justify-content:center;font-size:100px;margin-bottom:12px;box-shadow:0 12px 40px rgba(200,65,110,.15)">&#127801;</div>
+                        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:16px">
+                          <div style="background:linear-gradient(135deg,#ffe0ec,#ffd0e4);border-radius:11px;height:48px;display:flex;align-items:center;justify-content:center;font-size:20px;border:1.5px solid #c8416e">&#127801;</div>
+                          <div style="background:linear-gradient(135deg,#ffeaf2,#ffd8ea);border-radius:11px;height:48px;display:flex;align-items:center;justify-content:center;font-size:20px;border:1.5px dashed #ede7f4">&#127800;</div>
+                          <div style="background:linear-gradient(135deg,#fffbe8,#fff5c0);border-radius:11px;height:48px;display:flex;align-items:center;justify-content:center;font-size:20px;border:1.5px dashed #ede7f4">&#10024;</div>
+                          <div style="background:linear-gradient(135deg,#e8f5f0,#d4ede6);border-radius:11px;height:48px;display:flex;align-items:center;justify-content:center;font-size:20px;border:1.5px dashed #ede7f4">&#127807;</div>
+                        </div>
+                        <div style="display:flex;gap:8px">
+                          <div style="flex:1;padding:9px;border-radius:8px;border:1px solid #ede7f4;background:white;display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px;font-weight:600">&#128279; Share</div>
+                          <div style="flex:1;padding:9px;border-radius:8px;border:1px solid #ede7f4;background:white;display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px;font-weight:600">&#9825; Wishlist</div>
+                        </div>
+                      </div>
+                      <div>
+                        <div style="display:flex;gap:7px;margin-bottom:10px">
+                          <span style="background:rgba(252,232,240,.9);color:#c8416e;font-size:9px;font-weight:700;padding:3px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.08em">Love</span>
+                          <span style="background:rgba(200,65,110,.9);color:white;font-size:9px;font-weight:700;padding:3px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.08em">Bestseller</span>
+                        </div>
+                        <div style="font-size:11px;color:#7a6e8a;margin-bottom:8px">&#9733;&#9733;&#9733;&#9733;&#9733; <span style="color:#c8416e;font-weight:700">4.9</span> &nbsp; <span style="text-decoration:underline;color:#c8416e">124 reviews</span></div>
+                        <div style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;line-height:.93;letter-spacing:-.04em;margin-bottom:8px">Crimson <em style="color:#c8416e">Affair</em></div>
+                        <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:#c8416e;margin-bottom:10px">"For when love deserves to be seen."</div>
+                        <div style="font-size:12px;color:#7a6e8a;line-height:1.7;margin-bottom:14px">Hand-tied premium red roses accented with eucalyptus and bear grass. Each stem hand-selected at peak bloom, guaranteed fresh and fragrant.</div>
+                        <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;color:#c8416e;line-height:1;letter-spacing:-.04em;margin-bottom:16px">&pound;58</div>
+                        <div style="font-size:9px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;margin-bottom:8px">Choose Size</div>
+                        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px">
+                          <div style="padding:9px;border-radius:9px;border:1.5px dashed #ede7f4;text-align:center"><div style="font-size:10px;font-weight:700;color:#14101e">Small</div><div style="font-size:9px;color:#7a6e8a">7 stems</div><div style="font-size:10px;font-weight:700;color:#c8416e">&pound;28</div></div>
+                          <div style="padding:9px;border-radius:9px;border:1.5px solid #c8416e;background:#fce8f0;text-align:center"><div style="font-size:10px;font-weight:700;color:#14101e">Classic</div><div style="font-size:9px;color:#7a6e8a">12 stems</div><div style="font-size:10px;font-weight:700;color:#c8416e">&pound;58</div></div>
+                          <div style="padding:9px;border-radius:9px;border:1.5px dashed #ede7f4;text-align:center"><div style="font-size:10px;font-weight:700;color:#14101e">Luxury</div><div style="font-size:9px;color:#7a6e8a">20 stems</div><div style="font-size:10px;font-weight:700;color:#c8416e">&pound;88</div></div>
+                          <div style="padding:9px;border-radius:9px;border:1.5px dashed #ede7f4;text-align:center"><div style="font-size:10px;font-weight:700;color:#14101e">Grand</div><div style="font-size:9px;color:#7a6e8a">30 stems</div><div style="font-size:10px;font-weight:700;color:#c8416e">&pound;120</div></div>
+                        </div>
+                        <div style="font-size:9px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;margin-bottom:8px">Enhance Your Gift</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px">
+                          <div style="display:flex;align-items:center;gap:7px;padding:9px 10px;border-radius:9px;border:1.5px dashed #ede7f4;background:white"><span style="font-size:16px">&#127851;</span><div><div style="font-size:10px;font-weight:700">Chocolates</div><div style="font-size:10px;color:#c8416e">+&pound;8</div></div></div>
+                          <div style="display:flex;align-items:center;gap:7px;padding:9px 10px;border-radius:9px;border:1.5px dashed #ede7f4;background:white"><span style="font-size:16px">&#128369;</span><div><div style="font-size:10px;font-weight:700">Scented Candle</div><div style="font-size:10px;color:#c8416e">+&pound;6</div></div></div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px">
+                          <div style="padding:10px;border-radius:9px;border:1.5px solid #c8416e;background:#fce8f0"><div style="font-size:10px;font-weight:700">&#128640; Same Day</div><div style="font-size:9px;color:#7a6e8a">Order before 3pm</div><div style="font-size:9px;color:#c8416e;font-weight:700">&pound;4.99</div></div>
+                          <div style="padding:10px;border-radius:9px;border:1.5px dashed #ede7f4;background:white"><div style="font-size:10px;font-weight:700">&#128230; Next Day</div><div style="font-size:9px;color:#7a6e8a">Choose your date</div><div style="font-size:9px;color:#c8416e;font-weight:700">Free over &pound;60</div></div>
+                        </div>
+                        <div style="display:flex;gap:8px">
+                          <div style="width:48px;height:48px;border-radius:50%;border:1.5px solid #ede7f4;display:flex;align-items:center;justify-content:center;font-size:20px;background:white">&#9825;</div>
+                          <div style="flex:1;background:linear-gradient(135deg,#c8416e,#a02e56);color:white;padding:14px;border-radius:999px;text-align:center;font-size:13px;font-weight:700;box-shadow:0 8px 24px rgba(200,65,110,.3)">Add to Basket &mdash; &pound;58</div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px">
+                          <div style="padding:10px;border-radius:9px;background:white;border:1px solid #ede7f4;text-align:center"><div style="font-size:16px">&#127807;</div><div style="font-size:9px;font-weight:700;margin-top:4px">Sustainably<br>sourced</div></div>
+                          <div style="padding:10px;border-radius:9px;background:white;border:1px solid #ede7f4;text-align:center"><div style="font-size:16px">&#128666;</div><div style="font-size:9px;font-weight:700;margin-top:4px">Same-day<br>delivery</div></div>
+                          <div style="padding:10px;border-radius:9px;background:white;border:1px solid #ede7f4;text-align:center"><div style="font-size:16px">&#9989;</div><div style="font-size:9px;font-weight:700;margin-top:4px">Freshness<br>guarantee</div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ann-row" style="margin-top:14px">
+                  <span class="annotation"><span class="ann-dot"></span>Meaning quote builds purchase confidence</span>
+                  <span class="annotation"><span class="ann-dot"></span>Size selector with live price update</span>
+                  <span class="annotation"><span class="ann-dot"></span>Add-ons increase basket value</span>
+                  <span class="annotation"><span class="ann-dot"></span>Delivery visible before checkout</span>
+                  <span class="annotation"><span class="ann-dot"></span>Single clear CTA with total shown</span>
+                  <span class="annotation"><span class="ann-dot"></span>3 trust signals anchor CTA</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
